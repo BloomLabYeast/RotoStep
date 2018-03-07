@@ -1,4 +1,4 @@
-# Project Title
+# RotoStep
 
 RotoStep is a MATLAB script that adds a condensin complex to an existing chromoShake configuration file or simulation output file (outfile). The chromoShake simulator adds thermal motion to polymer models, with the default polymer being DNA (persistence length 50 nm). RotoStep alters the condensin complexes' spring attachments in between chromoShake simulator runs. The default parameters of RotoStep were set so condensin complexes extrude loops when attached to slack subtrates and traslocates on taut substrates. RotoSteps algorithm was inspired by the experiments of Terekawa et al. published in Science in 2017 (DOI: 10.1126/science.aan6516).
 
@@ -7,14 +7,15 @@ RotoStep is a MATLAB script that adds a condensin complex to an existing chromoS
 ### Prerequisites
 
 * [MATLAB](https://www.mathworks.com/downloads/)
+  * Given enough interest we may port RotoStep code to Python.
 * chromoShake
   * [Windows Installer](http://bloomlab.web.unc.edu/files/2016/01/chromoShake_1_2_0.zip)
   * [Source Code](http://bloomlab.web.unc.edu/files/2016/01/Source_code.zip)
   * Installation [guide and tutorial](http://www.molbiolcell.org/content/suppl/2015/11/02/mbc.E15-08-0575v1.DC1/Chromoshake_Supplemental_information_FINAL_updated_03232016.pdf) for chromoShake starts on page 8 of supplemental materials for Lawrimore et al. published in Molecular Biology of the Cell (DOI: 10.1091/mbc.E15-08-0575)
 * grep
-  * [grep for Windows](http://gnuwin32.sourceforge.net/packages/grep.htm)
+  * [grep for Windows](http://gnuwin32.sourceforge.net/packages/grep.htm). Download the complete package, except sources from the link. By default the installer puts grep.exe, egrep.exe, and fgrep.exe in C:\Program Files(x86)\GnuWin32\bin. Add this directory to your system path.
 * sed
-  * [sed for Windows](http://gnuwin32.sourceforge.net/packages/sed.htm)
+  * [sed for Windows](http://gnuwin32.sourceforge.net/packages/sed.htm). Download the complete package, except sources from the link. By default the installer puts sed.exe in C:\Program Files(x86)\GnuWin32\bin. Add this directory to your system path if you didn't already.
 
 ### Installing
 
