@@ -4,17 +4,17 @@ RotoStep is a MATLAB script that adds a condensin complex to an existing chromoS
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 ### Prerequisites
 
-** *[MATLAB](https://www.mathworks.com/downloads/)
-*chromoShake
-
-..*[ZIP of Windows Installer](http://bloomlab.web.unc.edu/files/2016/01/chromoShake_1_2_0.zip)
-..*[Source code](http://bloomlab.web.unc.edu/files/2016/01/Source_code.zip)
-
-*grep
-*sed
+* [MATLAB](https://www.mathworks.com/downloads/)
+* chromoShake
+  * [Windows Installer](http://bloomlab.web.unc.edu/files/2016/01/chromoShake_1_2_0.zip)
+  * [Source Code](http://bloomlab.web.unc.edu/files/2016/01/Source_code.zip)
+  * Installation [guide and tutorial](http://www.molbiolcell.org/content/suppl/2015/11/02/mbc.E15-08-0575v1.DC1/Chromoshake_Supplemental_information_FINAL_updated_03232016.pdf) for chromoShake starts on page 8 of supplemental materials for Lawrimore et al. published in Molecular Biology of the Cell (DOI: 10.1091/mbc.E15-08-0575)
+* grep
+  * [grep for Windows](http://gnuwin32.sourceforge.net/packages/grep.htm)
+* sed
+  * [sed for Windows](http://gnuwin32.sourceforge.net/packages/sed.htm)
 
 ### Installing
 
