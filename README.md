@@ -99,7 +99,7 @@ We are a small group of well-meaning biologist trying to gain intuition into chr
 
 ## License
 
-This project is licensed under the GNU General Public License v3 - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU General Public License v3 - see the [LICENSE.md](https://github.com/jlaw8504/RotoStep/blob/master/LICENSE) file for details.
 
 ## Acknowledgments
 
