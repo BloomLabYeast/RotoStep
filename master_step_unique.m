@@ -1,4 +1,4 @@
-function master_step_unique(seed, infile, basename, step_path, chromo_cmd, steps_per_output,output_num,max_steps,cond_num,is_this_continuation,current_step)
+function RotoStep(seed, infile, basename, step_path, chromo_cmd, steps_per_output,output_num,max_steps,cond_num,is_this_continuation,current_step)
 %% Initial setup
 cd(step_path); %Set initial path
 if is_this_continuation == 0 %If this starting anew
