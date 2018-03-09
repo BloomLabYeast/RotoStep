@@ -1,7 +1,7 @@
 # RotoStep
 [![RotoStep on Slack Substrate](https://img.youtube.com/vi/3FoQhGUd-E0/0.jpg)](https://www.youtube.com/watch?v=3FoQhGUd-E0)
 
-RotoStep is a MATLAB script that adds a condensin complex to an existing chromoShake simulation output file (outfile). The chromoShake simulator adds thermal motion to polymer models, with the default polymer being DNA (persistence length 50 nm). RotoStep alters the condensin complexes' spring attachments in between chromoShake simulator runs. The default parameters of RotoStep were set so condensin complexes extrude loops when attached to slack subtrates and traslocates on taut substrates. RotoSteps algorithm was inspired by the experiments of Terekawa et al. published in Science in 2017 (DOI: 10.1126/science.aan6516). Our initial findings using RotoStep are published in Lawrimore et al in Cold Spring Harbor symposia on quantitative biology (DOI: doi: 10.1101/sqb.2017.82.033696)
+RotoStep is a MATLAB script that adds a condensin complex to an existing chromoShake simulation output file (outfile). The chromoShake simulator adds thermal motion to polymer models, with the default polymer being DNA (persistence length 50 nm). RotoStep alters the condensin complexes' spring attachments in between chromoShake simulator runs. The default parameters of RotoStep were set so condensin complexes extrude loops when attached to slack subtrates and traslocates on taut substrates. RotoSteps algorithm was inspired by the experiments of Terakawa et al. published in Science in 2017 (DOI: 10.1126/science.aan6516). Our initial findings using RotoStep are published in Lawrimore et al in Cold Spring Harbor symposia on quantitative biology (DOI: doi: 10.1101/sqb.2017.82.033696)
 
 ## Getting Started
 
