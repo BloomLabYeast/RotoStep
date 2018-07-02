@@ -1,11 +1,11 @@
 function RotoStep(seed, infile, basename, step_path, chromo_cmd, steps_per_output,output_num,max_steps,cond_num,is_this_continuation,current_step)
-%%ROTOSTEP function adds condensin adds a condensin complex to an existing 
-%chromoShake simulation output file (AKA outfile). The 
-%chromoShake simulator adds thermal motion to polymer models, with the 
-%default polymer being DNA (persistence length 50 nm). RotoStep alters the 
-%condensin complexes' spring attachments in between chromoShake simulator 
-%runs. The default parameters of RotoStep were set so condensin complexes 
-%extrude loops when attached to slack subtrates and traslocates on taut 
+%%ROTOSTEP function adds condensin adds a condensin complex to an existing
+%chromoShake simulation output file (AKA outfile). The
+%chromoShake simulator adds thermal motion to polymer models, with the
+%default polymer being DNA (persistence length 50 nm). RotoStep alters the
+%condensin complexes' spring attachments in between chromoShake simulator
+%runs. The default parameters of RotoStep were set so condensin complexes
+%extrude loops when attached to slack subtrates and traslocates on taut
 %substrates.
 
 % Input
@@ -21,7 +21,7 @@ function RotoStep(seed, infile, basename, step_path, chromo_cmd, steps_per_outpu
 %    files to be altered
 %
 %    chromo_cmd - A string calling chromoShake program with initial flag
-%    tags (i.e. C:\\Users\\ayush\\Desktop\\chromoShake_1.2.0\\chromoShake.exe -CPU -openCL_dir C:\\Users\\ayush\\Desktop\\chromoShake_1.2.0\\openCL'. 
+%    tags (i.e. C:\\Users\\ayush\\Desktop\\chromoShake_1.2.0\\chromoShake.exe -CPU -openCL_dir C:\\Users\\ayush\\Desktop\\chromoShake_1.2.0\\openCL'.
 %    The final '-save outfile_name steps_per_output output_num config_file'
 %    of calling chromoShake is added in RotoStep
 %
@@ -40,7 +40,7 @@ function RotoStep(seed, infile, basename, step_path, chromo_cmd, steps_per_outpu
 %    already containing condensin. 0 if this is a new simulation from an
 %    outfile without condensin
 %
-%   current_step - number of times condensin has stepped if file is 
+%   current_step - number of times condensin has stepped if file is
 %
 %Written by Ayush Doshi, Brandon Friedman, and Josh Lawrimore. August, 2017
 
@@ -82,7 +82,16 @@ while n <= max_steps %Run simulation to maximum step number
     %generate new random seed number based on n
     new_seed_line = sprintf('random_number_seed %d',n);
     %use sed to replace line
-    system(sprintf('sed -i -e ''s/%s/%s/'' %s_temp.cfg', rand_seed_line, new_seed_line, basename));
+    %Windows 10 systems have a bug with GNUwin32 sed -i function
+    %below is a workaround to prevent a large amount of sed* files
+    system(sprintf('sed -e "s/%s/%s/" %s_temp.cfg > delme.txt', rand_seed_line, new_seed_line, basename));
+    if ispc
+        system(sprintf('del %s_temp.cfg', basename));
+        system(sprintf('rename delme.txt %s_temp.cfg', basename));
+    else
+        system(sprintf('rm %s_temp.cfg', basename));
+        system(sprintf('mv delme.txt %s_temp.cfg', basename));
+    end
     %% Run chromoshake
     system(sprintf('%s -save %s_temp.out %d %d %s_temp.cfg',...
         chromo_cmd,basename,steps_per_output,output_num,basename)); %Run interations on temp.cfg
@@ -99,7 +108,14 @@ while n <= max_steps %Run simulation to maximum step number
         new_seed_num = n + 2;
         new_seed_line = sprintf('random_number_seed %d',new_seed_num);
         %sed the new seed in the old .cfg file
-        system(sprintf('sed -i -e ''s/%s/%s/'' %s_temp.cfg', rand_seed_line, new_seed_line, basename))
+        system(sprintf('sed -e "s/%s/%s/" %s_temp.cfg > delme.txt', rand_seed_line, new_seed_line, basename))
+        if ispc
+            system(sprintf('del %s_temp.cfg', basename));
+            system(sprintf('rename delme.txt %s_temp.cfg', basename));
+        else
+            system(sprintf('rm %s_temp.cfg', basename));
+            system(sprintf('mv delme.txt %s_temp.cfg', basename));
+        end
         system(sprintf('%s -save %s_temp.out %d %d %s_temp.cfg',...
             chromo_cmd,basename,steps_per_output,output_num,basename)); %Run interations on temp.cfg
         %Repeat check, if still breaks kill function with retrun
@@ -128,8 +144,15 @@ while n <= max_steps %Run simulation to maximum step number
         if abs(floor(log10(output_time))) < 100
             output_time_str = strrep(output_time_str,'e-', 'e-0');
         end
-        system(sprintf('sed -i -e ''0,/Time %s/s//Time %s/'' %s_temp.out',...
+        system(sprintf('sed -e "0,/Time %s/s//Time %s/" %s_temp.out > delme.txt',...
             select_times{i},output_time_str,basename));
+        if ispc
+            system(sprintf('del %s_temp.out', basename));
+            system(sprintf('rename delme.txt %s_temp.out', basename));
+        else
+            system(sprintf('rm %s_temp.out', basename));
+            system(sprintf('mv delme.txt %s_temp.out', basename));
+        end
     end
     [~,output] = system(sprintf('grep -n -B2 -m2 "Time " %s_temp.out |tail -n3| head -n1 | cut -d"-" -f1',basename)); %Find the linenumber of the first timestep to isolate
     cut_off_point = str2double(output); %Convert the linenumber from string to double
